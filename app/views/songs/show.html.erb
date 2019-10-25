@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="float-right">
+        <a class="m-3" href="/songs">Dashboard</a>
+        <a class="m-3" href="/logout">Logout</a>
+    </div>
+    <div class="container row m-5">
+        <div class="col-12 mt-5">
+            <h3>Others who added <%= @song.artist %> - <%= @song.title %></h3>
+        </div>
+        <div class="col-7">
+            <table class="mt-5 table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Times Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @song.likers.uniq.each do |liker| %>
+                    <tr>
+                        <td><a href="/users/<%= liker.id %>"><%= liker.first_name %> <%= liker.last_name %></a></td>
+                        <td><%= @song.playlists.where(user_id: liker).count %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

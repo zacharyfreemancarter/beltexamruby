@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeltExam</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    </style>
+  </head>
+
+  <body>
+
+      <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |attr, msg| %>
+          <% msg.each do |val| %>
+          <li class="text-danger"><%= attr %> <%= val %></li>
+          <% end %>
+        <% end %>
+      </ul>
+  <% end %>
+      <%= yield %>
+  </body>
+</html>
